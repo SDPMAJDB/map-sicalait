@@ -19,26 +19,32 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     minZoom: 10
 }).addTo(map);
 
-var contents = {
-    "-20.953960635794427,55.310168996339904": {
+var contentsTerra = {
+    "Terranimo42": {
         type: 'video',
-        src: "video/42.mp4"
+        src: "video/42.mp4",
+        coords: [-20.953960635794427,55.310168996339904]
     },
-    "-21.1402,55.5242": {
+    "Terranimo41": {
         type: 'video',
-        src: "video/41.mp4"
+        src: "video/41.mp4",
+        coords: [-20.897688161918236, 55.49739457348811]
     },
-    // Ajoutez d'autres coordonnées avec leur contenu ici (texte, images, etc.)
+    // Ajoutez d'autres contenus avec leurs identifiants ici (texte, images, etc.)
 };
 
-for (var coords in contents) {
-    var latLng = coords.split(',').map(coord => parseFloat(coord));
-    var marker = L.marker(latLng, { icon: iconTerra }).addTo(map);
-    marker.on('click', openContent);
+for (var id in contentsTerra) {
+    (function(id) {
+        var marker = L.marker(contentsTerra[id].coords, { icon: iconTerra }).addTo(map);
+        marker.on('click', function(e) {
+            openContent(id);
+        });
+    })(id);
 }
 
-function openContent(e) {
-    var content = contents[e.latlng.lat + "," + e.latlng.lng];
+
+function openContent(id) {
+    var content = contentsTerra[id];
     if (content) {
         var fullscreenDiv = document.getElementById('fullscreenVideo');
         if (content.type === 'video') {
