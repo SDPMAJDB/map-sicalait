@@ -7,6 +7,8 @@ var map = L.map('map', {
 
 map.dragging.disable();
 
+
+// Marqueurs
 var iconTerra = L.icon({
     iconUrl: 'markeur/logo_terra_test.png',
     iconSize: [88, 95],
@@ -14,28 +16,78 @@ var iconTerra = L.icon({
     popupAnchor: [100, 200]
 });
 
+var iconSicalait = L.icon({
+    iconUrl: 'markeur/markeurSicalait.png',
+    iconSize: [88, 95],
+    iconAnchor: [44, 95],
+    popupAnchor: [100, 200]
+});
+
+var iconMv = L.icon({
+    iconUrl: 'markeur/markeurMv.png',
+    iconSize: [88, 95],
+    iconAnchor: [44, 95],
+    popupAnchor: [100, 200]
+});
+
+var iconFj = L.icon({
+    iconUrl: 'markeur/markeurFj.png',
+    iconSize: [88, 95],
+    iconAnchor: [44, 95],
+    popupAnchor: [100, 200]
+});
+
+
+
+// Leaflet
+
+
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 10,
     minZoom: 10
 }).addTo(map);
 
-var contentsTerra = {
+
+// Contenu marqueurs
+
+var contents = {
     "Terranimo42": {
         type: 'video',
         src: "video/42.mp4",
-        coords: [-20.953960635794427,55.310168996339904]
+        coords: [-20.953960635794427,55.310168996339904],
+        icon: iconTerra
     },
     "Terranimo41": {
         type: 'video',
         src: "video/41.mp4",
-        coords: [-20.897688161918236, 55.49739457348811]
+        coords: [-20.897688161918236, 55.49739457348811],
+        icon: iconTerra
+    },
+    "SicalaitSiege": {
+        type: 'video',
+        src: "video/siege_sicalait.mp4",
+        coords: [-21.200809629418348, 55.57807419686832],
+        icon: iconSicalait
+    },
+    "Magasinvert": {
+        type: 'html',
+        content: "<h2>Bienvenue au Point B</h2><p>Ceci est un contenu HTML pour le Point B.</p>",
+        coords: [-21.290516198219105, 55.5129043755783],
+        icon: iconMv
+    },
+    "Fermesetjardins": {
+        type: 'video',
+        src: "video/fermesetjardins.mp4",
+        coords: [-21.29266447265784, 55.4072135545414],
+        icon: iconFj
     },
     // Ajoutez d'autres contenus avec leurs identifiants ici (texte, images, etc.)
 };
 
-for (var id in contentsTerra) {
+
+for (var id in contents) {
     (function(id) {
-        var marker = L.marker(contentsTerra[id].coords, { icon: iconTerra }).addTo(map);
+        var marker = L.marker(contents[id].coords, { icon: contents[id].icon }).addTo(map);
         marker.on('click', function(e) {
             openContent(id);
         });
@@ -44,19 +96,24 @@ for (var id in contentsTerra) {
 
 
 function openContent(id) {
-    var content = contentsTerra[id];
+    var content = contents[id];
     if (content) {
-        var fullscreenDiv = document.getElementById('fullscreenVideo');
+        var fullscreenDivVideo = document.getElementById('fullscreenVideo');
+        var fullscreenDivContent = document.getElementById('fullscreenContent');
+        
         if (content.type === 'video') {
             var videoElement = document.getElementById('myVideo');
             videoElement.setAttribute('src', content.src);
-            fullscreenDiv.style.display = 'block';
+            fullscreenDivVideo.style.display = 'block';
             videoElement.play();
-        } else {
-            // Traiter les autres types de contenus ici
+        } else if (content.type === 'html') {
+            var contentContainer = document.getElementById('contentContainer');
+            contentContainer.innerHTML = content.content;
+            fullscreenDivContent.style.display = 'block';
         }
     }
 }
+
 
 var closeButton = document.getElementById('closeVideo');
 closeButton.onclick = function() {
@@ -81,20 +138,5 @@ closeContentButton.onclick = function() {
     var fullscreenDiv = document.getElementById('fullscreenContent');
     fullscreenDiv.style.display = 'none';
 }
-
-var htmlContent = `
-    <h2>Titre</h2>
-    <p>Texte descriptif ici.</p>
-    <img src="path/to/image.jpg" alt="Description" width="200">
-    <a href="https://www.example.com">Lien vers un site</a>
-`;
-
-var htmlMarker = L.marker([-21.20083963749789, 55.57803128152648], { icon: iconTerra }).addTo(map);
-htmlMarker.on('click', function() {
-    openFullscreenContent(htmlContent);
-});
-
-
-
 
 map.on('click', onMapClick);
