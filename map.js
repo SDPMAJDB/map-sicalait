@@ -37,16 +37,12 @@ var iconFj = L.icon({
     popupAnchor: [100, 200]
 });
 
-
-
 // Leaflet
-
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 10,
     minZoom: 10
 }).addTo(map);
-
 
 // Contenu marqueurs
 
@@ -81,6 +77,12 @@ var contents = {
         coords: [-21.29266447265784, 55.4072135545414],
         icon: iconFj
     },
+    "Fermesetjardins27": {
+        type: 'popup',
+        content: "<h2>Bienvenue au Point B</h2><p>Ceci est un contenu HTML pour le Point B.</p>",
+        coords: [-21.379827694135955, 55.608301600206936],
+        icon: iconFj
+    },
     // Ajoutez d'autres contenus avec leurs identifiants ici (texte, images, etc.)
 };
 
@@ -110,6 +112,12 @@ function openContent(id) {
             var contentContainer = document.getElementById('contentContainer');
             contentContainer.innerHTML = content.content;
             fullscreenDivContent.style.display = 'block';
+        } else if (content.type === 'popup') {
+            var popupContent = content.content;
+            L.popup()
+             .setLatLng(content.coords)
+             .setContent(popupContent)
+             .openOn(map);
         }
     }
 }
