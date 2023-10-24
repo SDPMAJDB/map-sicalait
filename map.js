@@ -103,7 +103,7 @@ var contents = {
     },
     "Fermesetjardins29": {
         type: 'video',
-        src: "video/stlouis.mp4",
+        src: "video/stlouisV2.mp4",
         coords: [-21.29266447265784, 55.4072135545414],
         icon: iconFj
     },
