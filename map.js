@@ -37,14 +37,23 @@ var iconFj = L.icon({
     popupAnchor: [100, 200]
 });
 
-// Leaflet
-
+// Leaflet online
+/**
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 10,
     minZoom: 10
 }).addTo(map);
+*/
 
-// Contenu marqueurs
+// Leaflet Offline
+
+L.tileLayer('tiles/{z}/{x}/{y}.png', {
+    maxZoom: 10,
+    minZoom: 10
+}).addTo(map);
+
+
+// Contenus + marqueurs
 
 var contents = {
     "Terranimo42": {
@@ -73,7 +82,7 @@ var contents = {
     },
     "Fermesetjardins": {
         type: 'video',
-        src: "video/fermesetjardins.mp4",
+        src: "video/stlouis.mp4",
         coords: [-21.29266447265784, 55.4072135545414],
         icon: iconFj
     },
@@ -131,14 +140,14 @@ closeButton.onclick = function() {
     var fullscreenDiv = document.getElementById('fullscreenVideo');
     fullscreenDiv.style.display = 'none';
 }
-
+/**
 function openFullscreenContent(htmlContent) {
     var fullscreenDiv = document.getElementById('fullscreenContent');
     var innerContentDiv = document.getElementById('innerContent');
     
     innerContentDiv.innerHTML = htmlContent;  // Remplir la div avec le contenu HTML fourni
     fullscreenDiv.style.display = 'block';
-}
+}*/
 
 // Bouton de fermeture pour la div de contenu
 var closeContentButton = document.getElementById('closeContent');
