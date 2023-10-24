@@ -832,3 +832,17 @@ svg.leaflet-image-layer.leaflet-interactive path {
     width: 100vw;
     height: 100vh;
 }
+
+.centered-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Ajuste la hauteur à la hauteur de la fenêtre */
+    width: 100vw; /* Ajuste la largeur à la largeur de la fenêtre */
+    overflow: hidden; /* Cache tout ce qui dépasse du conteneur */
+}
+
+.centered-image img {
+    max-height: 100%;
+    width: auto;
+}

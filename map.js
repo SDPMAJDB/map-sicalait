@@ -23,6 +23,13 @@ var iconSicalait = L.icon({
     popupAnchor: [100, 200]
 });
 
+var iconSicalaitmin = L.icon({
+    iconUrl: 'markeur/markeurSicalait.png',
+    iconSize: [50, 50],
+    iconAnchor: [25, 50],
+    popupAnchor: [0, 0]
+});
+
 var iconMv = L.icon({
     iconUrl: 'markeur/markeurMv.png',
     iconSize: [88, 95],
@@ -35,6 +42,20 @@ var iconFj = L.icon({
     iconSize: [88, 95],
     iconAnchor: [44, 95],
     popupAnchor: [100, 200]
+});
+
+var iconFjmin = L.icon({
+    iconUrl: 'markeur/markeurFj.png',
+    iconSize: [50, 50],
+    iconAnchor: [25, 50],
+    popupAnchor: [0, 0]
+});
+
+var iconMvmin = L.icon({
+    iconUrl: 'markeur/markeurMv.png',
+    iconSize: [50, 50],
+    iconAnchor: [25, 50],
+    popupAnchor: [0, 0]
 });
 
 // Leaflet online
@@ -75,12 +96,12 @@ var contents = {
         icon: iconSicalait
     },
     "Magasinvert": {
-        type: 'html',
-        content: "<h2>Bienvenue au Point B</h2><p>Ceci est un contenu HTML pour le Point B.</p>",
+        type: 'popup',
+        content: "<h2>Magasin Vert</h2><p>Lieu dit quatre cents Lotissement Cardamones, 97432, La Réunion</p>",
         coords: [-21.290516198219105, 55.5129043755783],
-        icon: iconMv
+        icon: iconMvmin
     },
-    "Fermesetjardins": {
+    "Fermesetjardins29": {
         type: 'video',
         src: "video/stlouis.mp4",
         coords: [-21.29266447265784, 55.4072135545414],
@@ -88,9 +109,63 @@ var contents = {
     },
     "Fermesetjardins27": {
         type: 'popup',
-        content: "<h2>Bienvenue au Point B</h2><p>Ceci est un contenu HTML pour le Point B.</p>",
+        content: "<h2>FERMES & JARDINS Saint Joseph </h2><p>27 RUE RAPHAEL BABET, 97480 SAINT-JOSEPH</p>",
         coords: [-21.379827694135955, 55.608301600206936],
-        icon: iconFj
+        icon: iconFjmin
+    },
+    "Fermesetjardins26": {
+        type: 'popup',
+        content: "<h2>FERMES & JARDINS Sainte Clotilde</h2><p>87 Av. Stanislas Gimart, Sainte-Clotilde 97490, La Réunion</p>",
+        coords: [-20.89799020965027, 55.475365884748776],
+        icon: iconFjmin
+    },
+    "Fermesetjardins22": {
+        type: 'popup',
+        content: "<h2>FERMES & JARDINS Saint-André </h2><p>120 Chemin Pente Sassy, St André 97440, La Réunion</p>",
+        coords: [-20.96466717610631, 55.65821009791505],
+        icon: iconFjmin
+    },
+    "Fermesetjardins23": {
+        type: 'html',
+        content: '<div class="centered-image"><img src="image/stpaul.png" alt="Image de St. Paul"></div>',
+        coords: [-20.98329945983677, 55.29403329812029],
+        icon: iconFjmin
+    },
+    "Fermesetjardins24": {
+        type: 'popup',
+        content: '<h2>FERMES & JARDINS Tampon 14ème </h2><p>211 Rue Georges Pompidou, Le Tampon 97430, La Réunion</p>',
+        coords: [-21.251879030926123, 55.52076151454591],
+        icon: iconFjmin
+    },
+    "Fermesetjardins21": {
+        type: 'popup',
+        content: '<h2>FERMES & JARDINS Tampon 600 </h2><p>19 Rue du Dr Henri Roussel, Le Tampon 97430, La Réunion',
+        coords: [-21.279791128490782, 55.5117989555919],
+        icon: iconFjmin
+    },
+    "Sicalaitpalmiste": {
+        type: 'html',
+        content: '<div class="centered-image"><img src="image/pdp.png" alt="Image de St. Paul"></div>',
+        coords: [-21.131775162840892, 55.628404470934015],
+        icon: iconSicalait
+    },
+    "Sicalaitplainedesgregues": {
+        type: 'popup',
+        content: '<h2>SICALAIT Plaine des Grègues </h2><p>139 Chemin du rond Plaine des Gregues, 97480, La Réunion</p>',
+        coords: [-21.321040397382536, 55.60634613095116],
+        icon: iconSicalaitmin
+    },
+    "Sicalaitjeanpetit": {
+        type: 'popup',
+        content: '<h2>SICALAIT Jean Petit </h2><p>2 Rue Galant, Rte de Jean Petit, Saint-Joseph 97480, La Réunion</p>',
+        coords: [-21.33850267648706, 55.629382384008174],
+        icon: iconSicalaitmin
+    },
+    "Sicalaitlachaloupe": {
+        type: 'popup',
+        content: '<h2>SICALAIT La Chaloupe </h2><p>12 Chem. Vaudeville, Saint-Leu 97416, La Réunion</p>',
+        coords: [-21.146743167276618, 55.31984584284487],
+        icon: iconSicalaitmin
     },
     // Ajoutez d'autres contenus avec leurs identifiants ici (texte, images, etc.)
 };
